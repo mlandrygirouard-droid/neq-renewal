@@ -11,8 +11,7 @@ export const actions: Actions = {
 			company_name: (form_data.get('company_name') as string) ?? '',
 			neq_number: (form_data.get('neq_number') as string) ?? '',
 			contact_email: (form_data.get('contact_email') as string) ?? '',
-			contact_phone: (form_data.get('contact_phone') as string) ?? '',
-			government_fee_included: form_data.get('government_fee_included') === 'on'
+			contact_phone: (form_data.get('contact_phone') as string) ?? ''
 		};
 
 		const errors = validate_renewal_form(data);

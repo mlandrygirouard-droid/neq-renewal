@@ -27,7 +27,7 @@ export async function create_company_record(data: RenewalFormData): Promise<Airt
 						'Company Name': data.company_name.trim(),
 						'NEQ Number': data.neq_number.trim(),
 						'Email': data.contact_email.trim(),
-						'Government Fee Included': data.government_fee_included
+						'Government Fee Included': true
 					}
 				}
 			]

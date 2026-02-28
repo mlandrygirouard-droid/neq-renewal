@@ -25,6 +25,10 @@
 				Service professionnel de renouvellement de votre immatriculation au Registraire des entreprises du Québec. Rapide, fiable et sans tracas.
 			</p>
 			<a href="#formulaire" class="cta-button">Commencer le renouvellement</a>
+			<div class="authorized-badge">
+				<img src="/permits_canada_logo.png" alt="Permits Canada" class="partner-logo" />
+				<span>Tiers autorisé par le gouvernement du Québec via Permits Canada</span>
+			</div>
 		</div>
 	</section>
 
@@ -44,7 +48,7 @@
 				<div class="feature-card">
 					<div class="feature-icon">&#9989;</div>
 					<h3>Garanti</h3>
-					<p>Renouvellement complété ou remboursé. Service à 299,99 $.</p>
+					<p>Renouvellement complété ou remboursé. Service à 299,99 $ + taxes. Frais gouvernementaux inclus.</p>
 				</div>
 			</div>
 		</div>
@@ -136,15 +140,8 @@
 						</div>
 					</div>
 
-					<div class="form-group checkbox-group">
-						<label class="checkbox-label">
-							<input
-								type="checkbox"
-								name="government_fee_included"
-								checked={form && 'values' in form ? form.values?.government_fee_included ?? false : false}
-							/>
-							<span>Inclure les frais gouvernementaux dans le service</span>
-						</label>
+					<div class="pricing-note">
+						<p>299,99 $ + taxes — Frais gouvernementaux inclus</p>
 					</div>
 
 					{#if get_field_error('form')}
@@ -230,6 +227,47 @@
 	.cta-button:hover {
 		background: #d63851;
 		transform: translateY(-2px);
+	}
+
+	.authorized-badge {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		margin-top: 2.5rem;
+		padding: 0.75rem 1.5rem;
+		background: rgba(255, 255, 255, 0.08);
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		max-width: 500px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.partner-logo {
+		height: 40px;
+		width: auto;
+	}
+
+	.authorized-badge span {
+		font-size: 0.85rem;
+		color: #b0b0c8;
+		text-align: left;
+	}
+
+	.pricing-note {
+		background: #f0f4ff;
+		border: 1px solid #d0daf0;
+		border-radius: 8px;
+		padding: 1rem;
+		text-align: center;
+		margin-bottom: 1.5rem;
+	}
+
+	.pricing-note p {
+		color: #1a1a2e;
+		font-weight: 600;
+		font-size: 0.95rem;
 	}
 
 	.features {
@@ -347,24 +385,6 @@
 		border-radius: 8px;
 		margin-bottom: 1.5rem;
 		text-align: center;
-	}
-
-	.checkbox-group {
-		margin-top: 0.5rem;
-	}
-
-	.checkbox-label {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		cursor: pointer;
-		font-weight: 400;
-	}
-
-	.checkbox-label input[type='checkbox'] {
-		width: 20px;
-		height: 20px;
-		accent-color: #0f3460;
 	}
 
 	.submit-button {

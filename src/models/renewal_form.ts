@@ -3,7 +3,6 @@ export type RenewalFormData = {
 	neq_number: string;
 	contact_email: string;
 	contact_phone: string;
-	government_fee_included: boolean;
 };
 
 export type FormValidationError = {
