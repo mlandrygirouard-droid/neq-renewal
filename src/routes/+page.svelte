@@ -26,7 +26,7 @@
 			</p>
 			<a href="#formulaire" class="cta-button">Commencer le renouvellement</a>
 			<div class="authorized-badge">
-				<img src="/permits_canada_logo.png" alt="Permits Canada" class="partner-logo" />
+				<img src="/permitscanadalogo.png" alt="Permits Canada" class="partner-logo" />
 				<span>Tiers autorisé par le gouvernement du Québec via Permits Canada</span>
 			</div>
 		</div>
