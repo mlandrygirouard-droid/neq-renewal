@@ -233,26 +233,26 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0.75rem;
-		margin-top: 2.5rem;
-		padding: 0.75rem 1.5rem;
-		background: rgba(255, 255, 255, 0.08);
-		border-radius: 8px;
-		border: 1px solid rgba(255, 255, 255, 0.15);
-		max-width: 500px;
+		gap: 1.25rem;
+		margin-top: 3rem;
+		padding: 1.25rem 2rem;
+		background: white;
+		border-radius: 12px;
+		max-width: 550px;
 		margin-left: auto;
 		margin-right: auto;
 	}
 
 	.partner-logo {
-		height: 40px;
+		height: 60px;
 		width: auto;
 	}
 
 	.authorized-badge span {
-		font-size: 0.85rem;
-		color: #b0b0c8;
+		font-size: 1rem;
+		color: #1a1a2e;
 		text-align: left;
+		font-weight: 500;
 	}
 
 	.pricing-note {
