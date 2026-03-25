@@ -30,7 +30,8 @@ export const actions: Actions = {
 			await create_company_record(data);
 			const client_secret = await create_checkout_session(data, plan, lang, url.origin);
 			return { client_secret };
-		} catch {
+		} catch (error) {
+			console.error('Form submission error:', error);
 			return fail(500, {
 				errors: [{ field: 'form', message: t.error_server }],
 				values: data

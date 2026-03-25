@@ -41,6 +41,15 @@
 	<link rel="alternate" hreflang="fr" href="https://neqrenewal.com/fr" />
 	<link rel="alternate" hreflang="en" href="https://neqrenewal.com/en" />
 	<link rel="alternate" hreflang="x-default" href="https://neqrenewal.com/fr" />
+	<meta property="og:title" content={t.page_title} />
+	<meta property="og:description" content={t.meta_description} />
+	<meta property="og:image" content="https://neqrenewal.com/og-image.png" />
+	<meta property="og:url" content="https://neqrenewal.com/{lang}" />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={t.page_title} />
+	<meta name="twitter:description" content={t.meta_description} />
+	<meta name="twitter:image" content="https://neqrenewal.com/og-image.png" />
 	<script src="https://js.stripe.com/v3/"></script>
 </svelte:head>
 
