@@ -66,3 +66,31 @@ export async function update_company_record(record_id: string, changes: string):
 		throw new Error(`Airtable API error: ${response.status} - ${error_body}`);
 	}
 }
+
+export async function set_quickbooks_invoice_id(record_id: string, qb_invoice_id: string): Promise<void> {
+	const { token, base_id, table_name } = get_airtable_config();
+	const url = `https://api.airtable.com/v0/${base_id}/${encodeURIComponent(table_name)}/${record_id}`;
+
+	await fetch(url, {
+		method: 'PATCH',
+		headers: {
+			'Authorization': `Bearer ${token}`,
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			fields: { 'QuickBooks Invoice ID': qb_invoice_id }
+		})
+	});
+}
+
+export async function get_company_record(record_id: string): Promise<AirtableRecord | null> {
+	const { token, base_id, table_name } = get_airtable_config();
+	const url = `https://api.airtable.com/v0/${base_id}/${encodeURIComponent(table_name)}/${record_id}`;
+
+	const response = await fetch(url, {
+		headers: { 'Authorization': `Bearer ${token}` }
+	});
+
+	if (!response.ok) return null;
+	return response.json();
+}
