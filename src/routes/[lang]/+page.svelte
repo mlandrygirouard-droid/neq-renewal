@@ -8,6 +8,7 @@
 	let { form, data }: { form: ActionData; data: PageData } = $props();
 	let submitting = $state(false);
 	let selected_plan = $state<'annual' | 'onetime'>('annual');
+	let info_same = $state<'yes' | 'no'>('yes');
 	let checkout_container: HTMLDivElement | undefined = $state();
 
 	let lang = $derived(data.lang as Lang);
@@ -176,6 +177,20 @@
 
 					<input type="hidden" name="plan" value={selected_plan} />
 
+					<div class="info-same-selector">
+						<p class="plan-title">{t.info_same_question}</p>
+						<div class="info-same-options">
+							<label class="info-same-option" class:selected={info_same === 'yes'}>
+								<input type="radio" name="info_same" value="yes" bind:group={info_same} />
+								<span>{t.info_same_yes}</span>
+							</label>
+							<label class="info-same-option" class:selected={info_same === 'no'}>
+								<input type="radio" name="info_same" value="no" bind:group={info_same} />
+								<span>{t.info_same_no}</span>
+							</label>
+						</div>
+					</div>
+
 					<div class="plan-selector">
 						<p class="plan-title">{t.plan_title}</p>
 						<div class="plan-options">
@@ -316,6 +331,45 @@
 		color: #1a1a2e;
 		text-align: left;
 		font-weight: 500;
+	}
+
+	.info-same-selector {
+		margin-bottom: 1.5rem;
+	}
+
+	.info-same-options {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+
+	.info-same-option {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		border: 2px solid #e0e0e0;
+		border-radius: 12px;
+		padding: 1rem 1.25rem;
+		cursor: pointer;
+		transition: border-color 0.2s, background 0.2s;
+		font-weight: 500;
+		color: #1a1a2e;
+		font-size: 0.95rem;
+	}
+
+	.info-same-option:hover {
+		border-color: #b0b0c8;
+	}
+
+	.info-same-option.selected {
+		border-color: #0f3460;
+		background: #f0f4ff;
+	}
+
+	.info-same-option input[type='radio'] {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
 	}
 
 	.plan-selector {
@@ -581,6 +635,10 @@
 		}
 
 		.form-row {
+			grid-template-columns: 1fr;
+		}
+
+		.info-same-options {
 			grid-template-columns: 1fr;
 		}
 

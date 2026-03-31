@@ -47,7 +47,8 @@ export async function create_checkout_session(
 	data: RenewalFormData,
 	plan: PlanType,
 	lang: string,
-	origin: string
+	origin: string,
+	airtable_record_id: string
 ): Promise<string> {
 	const stripe = get_client();
 	const { price_id, price_id_onetime } = get_stripe_config();
@@ -72,7 +73,9 @@ export async function create_checkout_session(
 			company_name: data.company_name.trim(),
 			neq_number: data.neq_number.trim(),
 			contact_phone: data.contact_phone.trim(),
-			plan
+			plan,
+			info_changed: data.info_changed ? 'true' : 'false',
+			airtable_record_id
 		},
 		return_url: `${origin}/${lang}/success?session_id={CHECKOUT_SESSION_ID}`
 	});
@@ -82,4 +85,9 @@ export async function create_checkout_session(
 	}
 
 	return session.client_secret;
+}
+
+export async function get_checkout_session(session_id: string) {
+	const stripe = get_client();
+	return stripe.checkout.sessions.retrieve(session_id);
 }

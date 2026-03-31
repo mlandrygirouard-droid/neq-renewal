@@ -1,6 +1,6 @@
 export type Lang = 'fr' | 'en';
 
-export const default_lang: Lang = 'fr';
+export const default_lang: Lang = 'en';
 
 export const langs: Lang[] = ['fr', 'en'];
 
@@ -49,12 +49,19 @@ export type Translations = {
 	plan_onetime_price: string;
 	plan_onetime_desc: string;
 	plan_best_value: string;
+	info_same_question: string;
+	info_same_yes: string;
+	info_same_no: string;
 	error_server: string;
 	footer_rights: string;
 	success_page_title: string;
 	payment_success_title: string;
 	payment_success_message: string;
 	back_home: string;
+	changes_label: string;
+	changes_placeholder: string;
+	changes_submit: string;
+	changes_submitted: string;
 };
 
 const fr: Translations = {
@@ -105,13 +112,20 @@ const fr: Translations = {
 	plan_onetime_price: '349,99 $',
 	plan_onetime_desc: 'Un seul paiement, sans engagement.',
 	plan_best_value: 'Meilleure valeur',
+	info_same_question: 'Vos informations sont-elles les mêmes que l\u2019an dernier?',
+	info_same_yes: 'Oui, aucun changement',
+	info_same_no: 'Non, des informations ont changé',
 	error_server: 'Une erreur est survenue. Veuillez réessayer.',
 	footer_rights: 'Tous droits réservés.',
 	success_page_title: 'Paiement confirmé - NEQ Renewal',
 	payment_success_title: 'Paiement confirmé!',
 	payment_success_message:
 		'Votre abonnement de renouvellement NEQ est maintenant actif. Notre équipe traitera votre demande dans les plus brefs délais. Vous recevrez une confirmation par courriel.',
-	back_home: "Retour à l'accueil"
+	back_home: "Retour à l'accueil",
+	changes_label: 'Décrivez les changements à apporter',
+	changes_placeholder: 'Ex: Nouvelle adresse du siège social, changement de dirigeants, etc.',
+	changes_submit: 'Envoyer les changements',
+	changes_submitted: 'Vos changements ont été envoyés avec succès. Notre équipe en tiendra compte.'
 };
 
 const en: Translations = {
@@ -159,13 +173,20 @@ const en: Translations = {
 	plan_onetime_price: '$349.99',
 	plan_onetime_desc: 'Single payment, no commitment.',
 	plan_best_value: 'Best value',
+	info_same_question: 'Is your company information the same as last year?',
+	info_same_yes: 'Yes, no changes',
+	info_same_no: 'No, some information has changed',
 	error_server: 'An error occurred. Please try again.',
 	footer_rights: 'All rights reserved.',
 	success_page_title: 'Payment confirmed - NEQ Renewal',
 	payment_success_title: 'Payment confirmed!',
 	payment_success_message:
 		'Your NEQ renewal subscription is now active. Our team will process your request as soon as possible. You will receive a confirmation by email.',
-	back_home: 'Back to home'
+	back_home: 'Back to home',
+	changes_label: 'Describe the changes to be made',
+	changes_placeholder: 'E.g.: New head office address, change of directors, etc.',
+	changes_submit: 'Submit changes',
+	changes_submitted: 'Your changes have been submitted successfully. Our team will take them into account.'
 };
 
 const translations: Record<Lang, Translations> = { fr, en };
