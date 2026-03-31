@@ -241,6 +241,11 @@
 	<footer>
 		<div class="container">
 			<p>&copy; {new Date().getFullYear()} NEQ Renewal. {t.footer_rights}</p>
+			<div class="footer-links">
+				<a href="/{lang}/privacy">{t.footer_privacy}</a>
+				<span class="footer-separator">|</span>
+				<a href="/{lang}/terms">{t.footer_terms}</a>
+			</div>
 		</div>
 	</footer>
 </main>
@@ -623,6 +628,26 @@
 		text-align: center;
 		padding: 2rem 0;
 		font-size: 0.9rem;
+	}
+
+	.footer-links {
+		margin-top: 0.75rem;
+	}
+
+	.footer-links a {
+		color: #888;
+		text-decoration: none;
+		font-size: 0.85rem;
+		transition: color 0.2s;
+	}
+
+	.footer-links a:hover {
+		color: #e94560;
+	}
+
+	.footer-separator {
+		color: #555;
+		margin: 0 0.5rem;
 	}
 
 	@media (max-width: 640px) {

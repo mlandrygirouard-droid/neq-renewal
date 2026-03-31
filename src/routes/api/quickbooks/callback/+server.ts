@@ -1,4 +1,4 @@
-import { json, error } from '@sveltejs/kit';
+import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { exchange_code } from '../../../../services/quickbooks';
 
@@ -12,10 +12,15 @@ export const GET: RequestHandler = async ({ url }) => {
 	}
 
 	if (!code || !realm_id) {
-		return error(400, 'Missing code or realmId');
+		return json({ error: 'Missing code or realmId', params: Object.fromEntries(url.searchParams) }, { status: 400 });
 	}
 
-	await exchange_code(code, realm_id);
-
-	return json({ success: true, message: 'QuickBooks connected successfully' });
+	try {
+		await exchange_code(code, realm_id);
+		return json({ success: true, message: 'QuickBooks connected successfully' });
+	} catch (err) {
+		const message = err instanceof Error ? err.message : String(err);
+		console.error('QuickBooks callback error:', message);
+		return json({ error: message }, { status: 500 });
+	}
 };
