@@ -169,6 +169,7 @@ export type Translations = {
 	renewal_status_canceled: string;
 	renewal_status_completed: string;
 	renewal_next_renewal: string;
+	renewal_date: string;
 	renewal_cancel_sub: string;
 	renewal_cancel_confirm: string;
 	renewal_canceled_success: string;
@@ -322,7 +323,7 @@ const fr: Translations = {
 	partner_title: 'Devenez partenaire NEQ Renewal',
 	partner_intro: 'Rejoignez notre programme de partenaires et gagnez des commissions en référant des entreprises qui ont besoin de renouveler leur immatriculation NEQ.',
 	partner_benefit_1: '40% de commission sur la première vente de chaque client référé',
-	partner_benefit_2: '20% de commission sur chaque renouvellement subséquent',
+	partner_benefit_2: '20% de commission sur le renouvellement de la 2e année',
 	partner_benefit_3: 'Tableau de bord personnel pour suivre vos commissions en temps réel',
 	partner_form_title: 'Inscription au programme',
 	partner_label_name: 'Nom complet',
@@ -367,6 +368,7 @@ const fr: Translations = {
 	renewal_status_canceled: 'Annulé',
 	renewal_status_completed: 'Complété',
 	renewal_next_renewal: 'Prochain renouvellement',
+	renewal_date: 'Date de renouvellement',
 	renewal_cancel_sub: 'Annuler mon abonnement',
 	renewal_cancel_confirm: 'Êtes-vous sûr de vouloir annuler votre abonnement? Il restera actif jusqu\'à la fin de la période en cours.',
 	renewal_canceled_success: 'Votre abonnement a été annulé. Il restera actif jusqu\'à la fin de la période de facturation en cours.',
@@ -517,7 +519,7 @@ const en: Translations = {
 	partner_title: 'Become a NEQ Renewal Partner',
 	partner_intro: 'Join our partner program and earn commissions by referring businesses that need to renew their NEQ registration.',
 	partner_benefit_1: '40% commission on the first sale of each referred client',
-	partner_benefit_2: '20% commission on every subsequent renewal',
+	partner_benefit_2: '20% commission on the 2nd year renewal',
 	partner_benefit_3: 'Personal dashboard to track your commissions in real time',
 	partner_form_title: 'Program registration',
 	partner_label_name: 'Full name',
@@ -562,6 +564,7 @@ const en: Translations = {
 	renewal_status_canceled: 'Canceled',
 	renewal_status_completed: 'Completed',
 	renewal_next_renewal: 'Next renewal',
+	renewal_date: 'Renewal date',
 	renewal_cancel_sub: 'Cancel my subscription',
 	renewal_cancel_confirm: 'Are you sure you want to cancel your subscription? It will remain active until the end of the current billing period.',
 	renewal_canceled_success: 'Your subscription has been canceled. It will remain active until the end of the current billing period.',

@@ -33,7 +33,8 @@ export const POST: RequestHandler = async ({ request }) => {
 		company_name: r.fields['Company Name'] as string,
 		neq_number: r.fields['NEQ Number'] as string,
 		email: r.fields['Email'] as string,
-		qb_invoice_id: r.fields['QuickBooks Invoice ID'] as string | undefined
+		qb_invoice_id: r.fields['QuickBooks Invoice ID'] as string | undefined,
+		renewal_date: r.fields['Renewal Date'] as string | undefined
 	}));
 
 	const sub_data = subscriptions.map((s) => ({

@@ -216,7 +216,7 @@
 									<tr>
 										<td>{c.date}</td>
 										<td>{c.client_company}</td>
-										<td>{c.type === 'first_sale' ? (lang === 'fr' ? '1ère vente' : '1st sale') : (lang === 'fr' ? 'Renouvellement' : 'Renewal')}</td>
+										<td>{c.type === 'first_sale' ? (lang === 'fr' ? '1ère année' : '1st year') : (lang === 'fr' ? '2e année' : '2nd year')}</td>
 										<td class="amount">{format_currency(c.commission_amount)}</td>
 										<td><span class="badge" class:pending={c.status === 'pending'} class:paid={c.status === 'paid'}>{c.status === 'pending' ? (lang === 'fr' ? 'En attente' : 'Pending') : (lang === 'fr' ? 'Payé' : 'Paid')}</span></td>
 									</tr>

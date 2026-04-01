@@ -20,6 +20,7 @@
 		neq_number: string;
 		email: string;
 		qb_invoice_id?: string;
+		renewal_date?: string;
 	};
 
 	type SubscriptionData = {
@@ -142,6 +143,12 @@
 							<span class="info-label">{t.renewal_neq}</span>
 							<span class="info-value">{records[0].neq_number}</span>
 						</div>
+						{#if records[0].renewal_date}
+							<div class="info-row">
+								<span class="info-label">{t.renewal_date}</span>
+								<span class="info-value">{new Date(records[0].renewal_date).toLocaleDateString(lang === 'fr' ? 'fr-CA' : 'en-CA', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+							</div>
+						{/if}
 					</div>
 
 					{#if subscriptions.length > 0}

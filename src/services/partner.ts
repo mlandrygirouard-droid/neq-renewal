@@ -206,6 +206,17 @@ export async function get_all_commissions(status?: string): Promise<Commission[]
 	return data.records.map(parse_commission);
 }
 
+export async function count_commissions_for_client(partner_ref: string, client_neq: string): Promise<number> {
+	const formula = encodeURIComponent(`AND({Partner Ref}='${escape_formula(partner_ref)}',{Client NEQ}='${escape_formula(client_neq)}')`);
+	const url = `${get_base_url('Commissions')}?filterByFormula=${formula}`;
+
+	const response = await fetch(url, { headers: get_headers() });
+	if (!response.ok) return 0;
+
+	const data: AirtableResponse = await response.json();
+	return data.records.length;
+}
+
 export async function mark_commission_paid(record_id: string): Promise<void> {
 	await fetch(`${get_base_url('Commissions')}/${record_id}`, {
 		method: 'PATCH',
