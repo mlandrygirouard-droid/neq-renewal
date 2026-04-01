@@ -15,6 +15,9 @@
 	let lang = $derived(data.lang as Lang);
 	let t = $derived(get_t(lang));
 	let ref = $derived(page.url.searchParams.get('ref') || '');
+	let has_discount = $derived(['olivier'].includes(ref));
+	let discounted_annual = '$108.00 / year';
+	let discounted_onetime = '$108.00';
 
 	let show_checkout = $derived(form && 'client_secret' in form && form.client_secret);
 
@@ -206,7 +209,12 @@
 										<span class="plan-label">{t.plan_annual_label}</span>
 										<span class="plan-badge">{t.plan_best_value}</span>
 									</div>
-									<span class="plan-price">{t.plan_annual_price}</span>
+									{#if has_discount}
+										<span class="plan-price-original">{t.plan_annual_price}</span>
+										<span class="plan-price discounted">{discounted_annual}</span>
+									{:else}
+										<span class="plan-price">{t.plan_annual_price}</span>
+									{/if}
 									<span class="plan-desc">{t.plan_annual_desc}</span>
 								</div>
 							</label>
@@ -216,7 +224,12 @@
 									<div class="plan-header">
 										<span class="plan-label">{t.plan_onetime_label}</span>
 									</div>
-									<span class="plan-price">{t.plan_onetime_price}</span>
+									{#if has_discount}
+										<span class="plan-price-original">{t.plan_onetime_price}</span>
+										<span class="plan-price discounted">{discounted_onetime}</span>
+									{:else}
+										<span class="plan-price">{t.plan_onetime_price}</span>
+									{/if}
 									<span class="plan-desc">{t.plan_onetime_desc}</span>
 								</div>
 							</label>
@@ -462,6 +475,17 @@
 		font-size: 1.3rem;
 		font-weight: 700;
 		color: #0f3460;
+	}
+
+	.plan-price.discounted {
+		color: #16a34a;
+	}
+
+	.plan-price-original {
+		font-size: 1rem;
+		color: #999;
+		text-decoration: line-through;
+		margin-bottom: 0.1rem;
 	}
 
 	.plan-desc {
