@@ -27,9 +27,11 @@ export const actions: Actions = {
 			return fail(400, { errors, values: data });
 		}
 
+		const ref = url.searchParams.get('ref') || (form_data.get('ref') as string) || undefined;
+
 		try {
 			const record = await create_company_record(data);
-			const client_secret = await create_checkout_session(data, plan, lang, url.origin, record.id);
+			const client_secret = await create_checkout_session(data, plan, lang, url.origin, record.id, ref);
 			return { client_secret };
 		} catch (error) {
 			console.error('Form submission error:', error);

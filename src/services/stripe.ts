@@ -43,12 +43,39 @@ async function get_quebec_tax_rates(stripe: Stripe): Promise<string[]> {
 	return cached_tax_rate_ids;
 }
 
+const REFERRAL_COUPONS: Record<string, { annual: number; onetime: number }> = {
+	olivier: { annual: 19199, onetime: 24199 }
+};
+
+async function get_or_create_coupon(stripe: Stripe, ref: string, plan: PlanType): Promise<string | null> {
+	const config = REFERRAL_COUPONS[ref];
+	if (!config) return null;
+
+	const amount_off = plan === 'annual' ? config.annual : config.onetime;
+	const coupon_id = `ref-${ref}-${plan}`;
+
+	try {
+		await stripe.coupons.retrieve(coupon_id);
+	} catch {
+		await stripe.coupons.create({
+			id: coupon_id,
+			amount_off,
+			currency: 'cad',
+			duration: plan === 'annual' ? 'forever' : 'once',
+			name: `Referral - ${ref}`
+		});
+	}
+
+	return coupon_id;
+}
+
 export async function create_checkout_session(
 	data: RenewalFormData,
 	plan: PlanType,
 	lang: string,
 	origin: string,
-	airtable_record_id: string
+	airtable_record_id: string,
+	ref?: string
 ): Promise<string> {
 	const stripe = get_client();
 	const { price_id, price_id_onetime } = get_stripe_config();
@@ -57,7 +84,7 @@ export async function create_checkout_session(
 	const is_subscription = plan === 'annual';
 	const selected_price = is_subscription ? price_id : price_id_onetime;
 
-	const session = await stripe.checkout.sessions.create({
+	const session_params: Stripe.Checkout.SessionCreateParams = {
 		ui_mode: 'embedded',
 		mode: is_subscription ? 'subscription' : 'payment',
 		payment_method_types: ['card'],
@@ -75,10 +102,24 @@ export async function create_checkout_session(
 			contact_phone: data.contact_phone.trim(),
 			plan,
 			info_changed: data.info_changed ? 'true' : 'false',
-			airtable_record_id
+			airtable_record_id,
+			...(ref ? { ref } : {})
 		},
 		return_url: `${origin}/${lang}/success?session_id={CHECKOUT_SESSION_ID}`
-	});
+	};
+
+	if (ref) {
+		const coupon_id = await get_or_create_coupon(stripe, ref, plan);
+		if (coupon_id) {
+			if (is_subscription) {
+				session_params.discounts = [{ coupon: coupon_id }];
+			} else {
+				session_params.discounts = [{ coupon: coupon_id }];
+			}
+		}
+	}
+
+	const session = await stripe.checkout.sessions.create(session_params);
 
 	if (!session.client_secret) {
 		throw new Error('Stripe did not return a client secret');

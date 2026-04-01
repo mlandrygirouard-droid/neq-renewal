@@ -4,6 +4,7 @@
 	import { get_t, type Lang } from '$lib/i18n';
 	import { PUBLIC_STRIPE_PUBLISHABLE_KEY } from '$env/static/public';
 	import { onMount } from 'svelte';
+	import { page } from '$app/state';
 
 	let { form, data }: { form: ActionData; data: PageData } = $props();
 	let submitting = $state(false);
@@ -13,6 +14,7 @@
 
 	let lang = $derived(data.lang as Lang);
 	let t = $derived(get_t(lang));
+	let ref = $derived(page.url.searchParams.get('ref') || '');
 
 	let show_checkout = $derived(form && 'client_secret' in form && form.client_secret);
 
@@ -108,6 +110,9 @@
 						submitting = false;
 					};
 				}}>
+					{#if ref}
+						<input type="hidden" name="ref" value={ref} />
+					{/if}
 					<div class="form-group">
 						<label for="company_name">{t.label_company_name}</label>
 						<input
