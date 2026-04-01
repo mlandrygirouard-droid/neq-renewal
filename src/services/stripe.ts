@@ -43,30 +43,19 @@ async function get_quebec_tax_rates(stripe: Stripe): Promise<string[]> {
 	return cached_tax_rate_ids;
 }
 
-const REFERRAL_COUPONS: Record<string, { annual: number; onetime: number }> = {
-	olivier: { annual: 19199, onetime: 24199 }
+const GOVERNMENT_FEE = 10800; // 108.00$ in cents
+const SERVICE_FEE_ANNUAL = 19199; // 191.99$ in cents
+const SERVICE_FEE_ONETIME = 24199; // 241.99$ in cents
+
+const REFERRAL_SERVICE_FEES: Record<string, number> = {
+	olivier: 1200 // 12.00$ in cents
 };
 
-async function get_or_create_coupon(stripe: Stripe, ref: string, plan: PlanType): Promise<string | null> {
-	const config = REFERRAL_COUPONS[ref];
-	if (!config) return null;
-
-	const amount_off = plan === 'annual' ? config.annual : config.onetime;
-	const coupon_id = `ref-${ref}-${plan}`;
-
-	try {
-		await stripe.coupons.retrieve(coupon_id);
-	} catch {
-		await stripe.coupons.create({
-			id: coupon_id,
-			amount_off,
-			currency: 'cad',
-			duration: plan === 'annual' ? 'forever' : 'once',
-			name: `Referral - ${ref}`
-		});
+function get_service_fee(plan: PlanType, ref?: string): number {
+	if (ref && REFERRAL_SERVICE_FEES[ref] !== undefined) {
+		return REFERRAL_SERVICE_FEES[ref];
 	}
-
-	return coupon_id;
+	return plan === 'annual' ? SERVICE_FEE_ANNUAL : SERVICE_FEE_ONETIME;
 }
 
 export async function create_checkout_session(
@@ -78,24 +67,38 @@ export async function create_checkout_session(
 	ref?: string
 ): Promise<string> {
 	const stripe = get_client();
-	const { price_id, price_id_onetime } = get_stripe_config();
 	const tax_rate_ids = await get_quebec_tax_rates(stripe);
 
 	const is_subscription = plan === 'annual';
-	const selected_price = is_subscription ? price_id : price_id_onetime;
+	const service_fee = get_service_fee(plan, ref);
 
-	const session_params: Stripe.Checkout.SessionCreateParams = {
+	const gov_fee_item: Stripe.Checkout.SessionCreateParams.LineItem = {
+		price_data: {
+			currency: 'cad',
+			product_data: { name: 'NEQ (QC) Annual Renewal Fee — Government Fee' },
+			unit_amount: GOVERNMENT_FEE,
+			...(is_subscription ? { recurring: { interval: 'year' } } : {})
+		},
+		quantity: 1
+	};
+
+	const service_fee_item: Stripe.Checkout.SessionCreateParams.LineItem = {
+		price_data: {
+			currency: 'cad',
+			product_data: { name: 'NEQ Renewal Service Fee' },
+			unit_amount: service_fee,
+			...(is_subscription ? { recurring: { interval: 'year' } } : {})
+		},
+		quantity: 1,
+		tax_rates: tax_rate_ids
+	};
+
+	const session = await stripe.checkout.sessions.create({
 		ui_mode: 'embedded',
 		mode: is_subscription ? 'subscription' : 'payment',
 		payment_method_types: ['card'],
 		customer_email: data.contact_email.trim(),
-		line_items: [
-			{
-				price: selected_price,
-				quantity: 1,
-				tax_rates: tax_rate_ids
-			}
-		],
+		line_items: [gov_fee_item, service_fee_item],
 		metadata: {
 			company_name: data.company_name.trim(),
 			neq_number: data.neq_number.trim(),
@@ -106,20 +109,7 @@ export async function create_checkout_session(
 			...(ref ? { ref } : {})
 		},
 		return_url: `${origin}/${lang}/success?session_id={CHECKOUT_SESSION_ID}`
-	};
-
-	if (ref) {
-		const coupon_id = await get_or_create_coupon(stripe, ref, plan);
-		if (coupon_id) {
-			if (is_subscription) {
-				session_params.discounts = [{ coupon: coupon_id }];
-			} else {
-				session_params.discounts = [{ coupon: coupon_id }];
-			}
-		}
-	}
-
-	const session = await stripe.checkout.sessions.create(session_params);
+	});
 
 	if (!session.client_secret) {
 		throw new Error('Stripe did not return a client secret');

@@ -16,8 +16,8 @@
 	let t = $derived(get_t(lang));
 	let ref = $derived(page.url.searchParams.get('ref') || '');
 	let has_discount = $derived(['olivier'].includes(ref));
-	let discounted_annual = '$108.00 / year';
-	let discounted_onetime = '$108.00';
+	let discounted_annual = '$120.00 / year';
+	let discounted_onetime = '$120.00';
 
 	let show_checkout = $derived(form && 'client_secret' in form && form.client_secret);
 
