@@ -91,3 +91,22 @@ export async function get_checkout_session(session_id: string) {
 	const stripe = get_client();
 	return stripe.checkout.sessions.retrieve(session_id);
 }
+
+export async function find_subscriptions_by_email(email: string): Promise<Stripe.Subscription[]> {
+	const stripe = get_client();
+	const customers = await stripe.customers.list({ email, limit: 10 });
+
+	const subscriptions: Stripe.Subscription[] = [];
+	for (const customer of customers.data) {
+		const subs = await stripe.subscriptions.list({ customer: customer.id, limit: 10 });
+		subscriptions.push(...subs.data);
+	}
+	return subscriptions;
+}
+
+export async function cancel_subscription(subscription_id: string): Promise<Stripe.Subscription> {
+	const stripe = get_client();
+	return stripe.subscriptions.update(subscription_id, {
+		cancel_at_period_end: true
+	});
+}

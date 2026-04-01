@@ -83,6 +83,21 @@ export async function set_quickbooks_invoice_id(record_id: string, qb_invoice_id
 	});
 }
 
+export async function find_company_by_neq_email(neq_number: string, email: string): Promise<AirtableRecord[]> {
+	const { token, base_id, table_name } = get_airtable_config();
+	const formula = encodeURIComponent(`AND({NEQ Number}='${neq_number}',LOWER({Email})=LOWER('${email}'))`);
+	const url = `https://api.airtable.com/v0/${base_id}/${encodeURIComponent(table_name)}?filterByFormula=${formula}`;
+
+	const response = await fetch(url, {
+		headers: { 'Authorization': `Bearer ${token}` }
+	});
+
+	if (!response.ok) return [];
+
+	const data: AirtableResponse = await response.json();
+	return data.records;
+}
+
 export async function get_company_record(record_id: string): Promise<AirtableRecord | null> {
 	const { token, base_id, table_name } = get_airtable_config();
 	const url = `https://api.airtable.com/v0/${base_id}/${encodeURIComponent(table_name)}/${record_id}`;

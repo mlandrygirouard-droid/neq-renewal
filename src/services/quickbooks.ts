@@ -191,11 +191,14 @@ async function qb_api_request(tokens: QBTokens, method: string, endpoint: string
 		});
 	}
 
+	const intuit_tid = response.headers.get('intuit_tid');
+
 	if (!response.ok) {
 		const error_body = await response.text();
-		throw new Error(`QuickBooks API error: ${response.status} - ${error_body}`);
+		throw new Error(`QuickBooks API error: ${response.status} - ${error_body} (intuit_tid: ${intuit_tid})`);
 	}
 
+	console.log(`QuickBooks API ${method} ${endpoint} — intuit_tid: ${intuit_tid}`);
 	return response.json();
 }
 

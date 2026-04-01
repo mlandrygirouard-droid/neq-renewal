@@ -242,6 +242,12 @@
 		<div class="container">
 			<p>&copy; {new Date().getFullYear()} NEQ Renewal. {t.footer_rights}</p>
 			<div class="footer-links">
+				<a href="/{lang}/my-renewal">{t.footer_my_renewal}</a>
+				<span class="footer-separator">|</span>
+				<a href="/{lang}/about">{t.footer_about}</a>
+				<span class="footer-separator">|</span>
+				<a href="/{lang}/contact">{t.footer_contact}</a>
+				<span class="footer-separator">|</span>
 				<a href="/{lang}/privacy">{t.footer_privacy}</a>
 				<span class="footer-separator">|</span>
 				<a href="/{lang}/terms">{t.footer_terms}</a>

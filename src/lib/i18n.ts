@@ -113,6 +113,42 @@ export type Translations = {
 	terms_section_governing_law_text: string;
 	terms_section_contact_title: string;
 	terms_section_contact_text: string;
+	footer_about: string;
+	footer_contact: string;
+	about_page_title: string;
+	about_title: string;
+	about_intro: string;
+	about_section_permits_title: string;
+	about_section_permits_text: string;
+	about_section_neqrenewal_title: string;
+	about_section_neqrenewal_text: string;
+	contact_page_title: string;
+	contact_title: string;
+	contact_intro: string;
+	contact_info_text: string;
+	footer_my_renewal: string;
+	renewal_page_title: string;
+	renewal_title: string;
+	renewal_intro: string;
+	renewal_label_neq: string;
+	renewal_label_email: string;
+	renewal_submit: string;
+	renewal_searching: string;
+	renewal_no_results: string;
+	renewal_company: string;
+	renewal_neq: string;
+	renewal_plan: string;
+	renewal_plan_annual: string;
+	renewal_plan_onetime: string;
+	renewal_status: string;
+	renewal_status_active: string;
+	renewal_status_canceled: string;
+	renewal_status_completed: string;
+	renewal_next_renewal: string;
+	renewal_cancel_sub: string;
+	renewal_cancel_confirm: string;
+	renewal_canceled_success: string;
+	renewal_renew_again: string;
 };
 
 const fr: Translations = {
@@ -250,7 +286,43 @@ const fr: Translations = {
 		"Les présentes conditions d'utilisation sont régies par les lois en vigueur dans la province de Québec et les lois fédérales canadiennes applicables. En cas de litige découlant de ces conditions ou de l'utilisation de notre service, les tribunaux de la ville de Québec auront compétence exclusive.",
 	terms_section_contact_title: '10. Nous contacter',
 	terms_section_contact_text:
-		"Pour toute question concernant ces conditions d'utilisation, veuillez nous contacter :\n\nPERMITS CANADA INC.\n3055 Boul Wilfrid-Hamel, Suite 225\nQuébec (QC) CA G1P 4C6\nCourriel : permits@permitscanada.com\nTéléphone : (418) 650-5757"
+		"Pour toute question concernant ces conditions d'utilisation, veuillez nous contacter :\n\nPERMITS CANADA INC.\n3055 Boul Wilfrid-Hamel, Suite 225\nQuébec (QC) CA G1P 4C6\nCourriel : permits@permitscanada.com\nTéléphone : (418) 650-5757",
+	footer_about: 'À propos',
+	footer_contact: 'Nous contacter',
+	about_page_title: 'À propos - NEQ Renewal',
+	about_title: 'À propos de NEQ Renewal',
+	about_intro: 'NEQ Renewal est un service de Permits Canada Inc., une entreprise établie au Québec spécialisée dans les services aux entreprises canadiennes.',
+	about_section_permits_title: 'Permits Canada',
+	about_section_permits_text: "Permits Canada Inc. est un tiers autorisé par le gouvernement du Québec, spécialisé dans l'obtention et le renouvellement de permis et d'immatriculations pour les entreprises canadiennes. Depuis notre établissement, nous desservons principalement les entreprises du domaine du transport à travers le Canada, les accompagnant dans leurs démarches administratives et réglementaires auprès des différentes instances gouvernementales.",
+	about_section_neqrenewal_title: 'NEQ Renewal — Notre nouvelle branche',
+	about_section_neqrenewal_text: "Fort de notre expertise dans les services gouvernementaux, nous avons créé NEQ Renewal, une nouvelle branche dédiée au renouvellement de l'immatriculation au Registraire des entreprises du Québec (NEQ). Cette initiative vise à étendre nos services au-delà du domaine du transport pour venir en aide à toutes les entreprises québécoises qui doivent renouveler leur immatriculation annuellement. Notre mission est de simplifier ce processus administratif en offrant un service rapide, fiable et sans tracas, permettant aux entrepreneurs de se concentrer sur ce qui compte vraiment : faire croître leur entreprise.",
+	contact_page_title: 'Nous contacter - NEQ Renewal',
+	contact_title: 'Nous contacter',
+	contact_intro: "Vous avez une question ou besoin d'assistance? N'hésitez pas à nous contacter par courriel ou par téléphone. Notre équipe se fera un plaisir de vous aider.",
+	contact_info_text: 'PERMITS CANADA INC.\n3055 Boul Wilfrid-Hamel, Suite 225\nQuébec (QC) CA G1P 4C6\nCourriel : permits@permitscanada.com\nTéléphone : (418) 650-5757',
+	footer_my_renewal: 'Mon renouvellement',
+	renewal_page_title: 'Mon renouvellement - NEQ Renewal',
+	renewal_title: 'Mon renouvellement',
+	renewal_intro: 'Entrez votre numéro NEQ et votre courriel pour consulter le statut de votre renouvellement.',
+	renewal_label_neq: 'Numéro NEQ',
+	renewal_label_email: 'Courriel',
+	renewal_submit: 'Consulter',
+	renewal_searching: 'Recherche en cours...',
+	renewal_no_results: 'Aucun renouvellement trouvé pour ce NEQ et courriel. Vérifiez vos informations ou commencez un nouveau renouvellement.',
+	renewal_company: 'Entreprise',
+	renewal_neq: 'Numéro NEQ',
+	renewal_plan: 'Plan',
+	renewal_plan_annual: 'Abonnement annuel',
+	renewal_plan_onetime: 'Paiement unique',
+	renewal_status: 'Statut',
+	renewal_status_active: 'Actif',
+	renewal_status_canceled: 'Annulé',
+	renewal_status_completed: 'Complété',
+	renewal_next_renewal: 'Prochain renouvellement',
+	renewal_cancel_sub: 'Annuler mon abonnement',
+	renewal_cancel_confirm: 'Êtes-vous sûr de vouloir annuler votre abonnement? Il restera actif jusqu\'à la fin de la période en cours.',
+	renewal_canceled_success: 'Votre abonnement a été annulé. Il restera actif jusqu\'à la fin de la période de facturation en cours.',
+	renewal_renew_again: 'Renouveler à nouveau'
 };
 
 const en: Translations = {
@@ -385,7 +457,43 @@ const en: Translations = {
 		'These terms of service are governed by the laws in force in the Province of Quebec and applicable federal Canadian laws. In the event of a dispute arising from these terms or the use of our service, the courts of Quebec City shall have exclusive jurisdiction.',
 	terms_section_contact_title: '10. Contact Us',
 	terms_section_contact_text:
-		'For any questions regarding these terms of service, please contact us:\n\nPERMITS CANADA INC.\n3055 Boul Wilfrid-Hamel, Suite 225\nQuebec (QC) CA G1P 4C6\nEmail: permits@permitscanada.com\nPhone: (418) 650-5757'
+		'For any questions regarding these terms of service, please contact us:\n\nPERMITS CANADA INC.\n3055 Boul Wilfrid-Hamel, Suite 225\nQuebec (QC) CA G1P 4C6\nEmail: permits@permitscanada.com\nPhone: (418) 650-5757',
+	footer_about: 'About Us',
+	footer_contact: 'Contact Us',
+	about_page_title: 'About Us - NEQ Renewal',
+	about_title: 'About NEQ Renewal',
+	about_intro: 'NEQ Renewal is a service of Permits Canada Inc., a Quebec-based company specializing in services for Canadian businesses.',
+	about_section_permits_title: 'Permits Canada',
+	about_section_permits_text: 'Permits Canada Inc. is an authorized third party by the Quebec government, specializing in obtaining and renewing permits and registrations for Canadian businesses. Since our establishment, we have primarily served businesses in the transportation industry across Canada, assisting them with their administrative and regulatory processes with various government agencies.',
+	about_section_neqrenewal_title: 'NEQ Renewal — Our New Branch',
+	about_section_neqrenewal_text: 'Building on our expertise in government services, we created NEQ Renewal, a new branch dedicated to renewing registration with the Quebec Enterprise Registrar (NEQ). This initiative aims to extend our services beyond the transportation industry to help all Quebec businesses that need to renew their registration annually. Our mission is to simplify this administrative process by offering a fast, reliable and hassle-free service, allowing entrepreneurs to focus on what truly matters: growing their business.',
+	contact_page_title: 'Contact Us - NEQ Renewal',
+	contact_title: 'Contact Us',
+	contact_intro: 'Have a question or need assistance? Feel free to reach out to us by email or phone. Our team will be happy to help.',
+	contact_info_text: 'PERMITS CANADA INC.\n3055 Boul Wilfrid-Hamel, Suite 225\nQuebec (QC) CA G1P 4C6\nEmail: permits@permitscanada.com\nPhone: (418) 650-5757',
+	footer_my_renewal: 'My Renewal',
+	renewal_page_title: 'My Renewal - NEQ Renewal',
+	renewal_title: 'My Renewal',
+	renewal_intro: 'Enter your NEQ number and email to check the status of your renewal.',
+	renewal_label_neq: 'NEQ Number',
+	renewal_label_email: 'Email',
+	renewal_submit: 'Look up',
+	renewal_searching: 'Searching...',
+	renewal_no_results: 'No renewal found for this NEQ and email. Please verify your information or start a new renewal.',
+	renewal_company: 'Company',
+	renewal_neq: 'NEQ Number',
+	renewal_plan: 'Plan',
+	renewal_plan_annual: 'Annual subscription',
+	renewal_plan_onetime: 'One-time payment',
+	renewal_status: 'Status',
+	renewal_status_active: 'Active',
+	renewal_status_canceled: 'Canceled',
+	renewal_status_completed: 'Completed',
+	renewal_next_renewal: 'Next renewal',
+	renewal_cancel_sub: 'Cancel my subscription',
+	renewal_cancel_confirm: 'Are you sure you want to cancel your subscription? It will remain active until the end of the current billing period.',
+	renewal_canceled_success: 'Your subscription has been canceled. It will remain active until the end of the current billing period.',
+	renewal_renew_again: 'Renew again'
 };
 
 const translations: Record<Lang, Translations> = { fr, en };
