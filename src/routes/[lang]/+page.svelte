@@ -264,6 +264,8 @@
 				<span class="footer-separator">|</span>
 				<a href="/{lang}/about">{t.footer_about}</a>
 				<span class="footer-separator">|</span>
+				<a href="/{lang}/partner">{t.footer_partner}</a>
+				<span class="footer-separator">|</span>
 				<a href="/{lang}/contact">{t.footer_contact}</a>
 				<span class="footer-separator">|</span>
 				<a href="/{lang}/privacy">{t.footer_privacy}</a>

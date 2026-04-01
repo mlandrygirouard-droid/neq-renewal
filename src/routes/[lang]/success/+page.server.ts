@@ -1,9 +1,10 @@
 import type { Actions, PageServerLoad } from './$types';
 import type { Lang } from '$lib/i18n';
 import { get_checkout_session } from '../../../services/stripe';
-import { update_company_record, get_company_record, set_quickbooks_invoice_id } from '../../../services/airtable';
+import { update_company_record, get_company_record, set_quickbooks_invoice_id, find_company_by_neq_email } from '../../../services/airtable';
 import { create_invoice } from '../../../services/quickbooks';
 import { fail } from '@sveltejs/kit';
+import { get_partner_by_ref, create_commission, find_reserved_neq, mark_reserved_neq_converted } from '../../../services/partner';
 
 export const load: PageServerLoad = async ({ params, url }) => {
 	const lang = params.lang as Lang;
@@ -31,6 +32,35 @@ export const load: PageServerLoad = async ({ params, url }) => {
 					await set_quickbooks_invoice_id(airtable_record_id, qb_invoice_id);
 				} catch (error) {
 					console.error('QuickBooks invoice creation failed:', error);
+				}
+
+				// Track referral commission
+				try {
+					let ref = session.metadata.ref;
+					const neq = session.metadata.neq_number ?? '';
+					const company = session.metadata.company_name ?? '';
+					const plan = session.metadata.plan as 'annual' | 'onetime';
+					const service_fees: Record<string, number> = { annual: 19199, onetime: 24199 };
+
+					if (!ref && neq) {
+						const reserved = await find_reserved_neq(neq);
+						if (reserved) {
+							ref = reserved.partner_ref;
+							await mark_reserved_neq_converted(reserved.id);
+						}
+					}
+
+					if (ref) {
+						const partner = await get_partner_by_ref(ref);
+						if (partner) {
+							const existing = await find_company_by_neq_email(neq, session.customer_email ?? '');
+							const is_first = existing.length <= 1;
+							const service_fee = service_fees[plan] || service_fees.onetime;
+							await create_commission(partner, company, neq, service_fee, is_first);
+						}
+					}
+				} catch (error) {
+					console.error('Commission tracking failed:', error);
 				}
 			}
 		}

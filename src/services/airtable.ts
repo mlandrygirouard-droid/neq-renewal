@@ -83,9 +83,13 @@ export async function set_quickbooks_invoice_id(record_id: string, qb_invoice_id
 	});
 }
 
+function escape_formula(value: string): string {
+	return value.replace(/'/g, "\\'");
+}
+
 export async function find_company_by_neq_email(neq_number: string, email: string): Promise<AirtableRecord[]> {
 	const { token, base_id, table_name } = get_airtable_config();
-	const formula = encodeURIComponent(`AND({NEQ Number}='${neq_number}',LOWER({Email})=LOWER('${email}'))`);
+	const formula = encodeURIComponent(`AND({NEQ Number}='${escape_formula(neq_number)}',LOWER({Email})=LOWER('${escape_formula(email)}'))`);
 	const url = `https://api.airtable.com/v0/${base_id}/${encodeURIComponent(table_name)}?filterByFormula=${formula}`;
 
 	const response = await fetch(url, {

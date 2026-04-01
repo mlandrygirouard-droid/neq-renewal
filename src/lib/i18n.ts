@@ -115,6 +115,30 @@ export type Translations = {
 	terms_section_contact_text: string;
 	footer_about: string;
 	footer_contact: string;
+	footer_partner: string;
+	partner_login_title: string;
+	partner_login_email: string;
+	partner_login_submit: string;
+	partner_login_error: string;
+	partner_page_title: string;
+	partner_title: string;
+	partner_intro: string;
+	partner_benefit_1: string;
+	partner_benefit_2: string;
+	partner_benefit_3: string;
+	partner_form_title: string;
+	partner_label_name: string;
+	partner_label_email: string;
+	partner_label_phone: string;
+	partner_label_company: string;
+	partner_placeholder_name: string;
+	partner_placeholder_email: string;
+	partner_placeholder_phone: string;
+	partner_placeholder_company: string;
+	partner_submit: string;
+	partner_submitting: string;
+	partner_success: string;
+	partner_error: string;
 	about_page_title: string;
 	about_title: string;
 	about_intro: string;
@@ -289,6 +313,30 @@ const fr: Translations = {
 		"Pour toute question concernant ces conditions d'utilisation, veuillez nous contacter :\n\nPERMITS CANADA INC.\n3055 Boul Wilfrid-Hamel, Suite 225\nQuébec (QC) CA G1P 4C6\nCourriel : permits@permitscanada.com\nTéléphone : (418) 650-5757",
 	footer_about: 'À propos',
 	footer_contact: 'Nous contacter',
+	footer_partner: 'Partenaires',
+	partner_login_title: 'Déjà partenaire?',
+	partner_login_email: 'Courriel',
+	partner_login_submit: 'Accéder à mon portail',
+	partner_login_error: 'Aucun compte partenaire trouvé avec ce courriel.',
+	partner_page_title: 'Devenir partenaire - NEQ Renewal',
+	partner_title: 'Devenez partenaire NEQ Renewal',
+	partner_intro: 'Rejoignez notre programme de partenaires et gagnez des commissions en référant des entreprises qui ont besoin de renouveler leur immatriculation NEQ.',
+	partner_benefit_1: '40% de commission sur la première vente de chaque client référé',
+	partner_benefit_2: '20% de commission sur chaque renouvellement subséquent',
+	partner_benefit_3: 'Tableau de bord personnel pour suivre vos commissions en temps réel',
+	partner_form_title: 'Inscription au programme',
+	partner_label_name: 'Nom complet',
+	partner_label_email: 'Courriel',
+	partner_label_phone: 'Téléphone',
+	partner_label_company: 'Entreprise (optionnel)',
+	partner_placeholder_name: 'Votre nom',
+	partner_placeholder_email: 'vous@exemple.com',
+	partner_placeholder_phone: '(418) 555-1234',
+	partner_placeholder_company: 'Nom de votre entreprise',
+	partner_submit: 'Soumettre ma candidature',
+	partner_submitting: 'Envoi en cours...',
+	partner_success: 'Votre candidature a été soumise avec succès! Nous vous contacterons sous peu pour activer votre compte partenaire.',
+	partner_error: "Une erreur est survenue. Veuillez réessayer ou nous contacter à permits@permitscanada.com.",
 	about_page_title: 'À propos - NEQ Renewal',
 	about_title: 'À propos de NEQ Renewal',
 	about_intro: 'NEQ Renewal est un service de Permits Canada Inc., une entreprise établie au Québec spécialisée dans les services aux entreprises canadiennes.',
@@ -460,6 +508,30 @@ const en: Translations = {
 		'For any questions regarding these terms of service, please contact us:\n\nPERMITS CANADA INC.\n3055 Boul Wilfrid-Hamel, Suite 225\nQuebec (QC) CA G1P 4C6\nEmail: permits@permitscanada.com\nPhone: (418) 650-5757',
 	footer_about: 'About Us',
 	footer_contact: 'Contact Us',
+	footer_partner: 'Partners',
+	partner_login_title: 'Already a partner?',
+	partner_login_email: 'Email',
+	partner_login_submit: 'Access my portal',
+	partner_login_error: 'No partner account found with this email.',
+	partner_page_title: 'Become a Partner - NEQ Renewal',
+	partner_title: 'Become a NEQ Renewal Partner',
+	partner_intro: 'Join our partner program and earn commissions by referring businesses that need to renew their NEQ registration.',
+	partner_benefit_1: '40% commission on the first sale of each referred client',
+	partner_benefit_2: '20% commission on every subsequent renewal',
+	partner_benefit_3: 'Personal dashboard to track your commissions in real time',
+	partner_form_title: 'Program registration',
+	partner_label_name: 'Full name',
+	partner_label_email: 'Email',
+	partner_label_phone: 'Phone',
+	partner_label_company: 'Company (optional)',
+	partner_placeholder_name: 'Your name',
+	partner_placeholder_email: 'you@example.com',
+	partner_placeholder_phone: '(418) 555-1234',
+	partner_placeholder_company: 'Your company name',
+	partner_submit: 'Submit my application',
+	partner_submitting: 'Submitting...',
+	partner_success: 'Your application has been submitted successfully! We will contact you shortly to activate your partner account.',
+	partner_error: 'An error occurred. Please try again or contact us at permits@permitscanada.com.',
 	about_page_title: 'About Us - NEQ Renewal',
 	about_title: 'About NEQ Renewal',
 	about_intro: 'NEQ Renewal is a service of Permits Canada Inc., a Quebec-based company specializing in services for Canadian businesses.',
